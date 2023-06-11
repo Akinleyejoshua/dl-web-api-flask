@@ -64,7 +64,7 @@ def facial_expression_decoder():
             return jsonify({"msg": f"{e}",})
 
 
-@app.route("/")
+@app.route("/", methods=["*"])
 def index():
     return jsonify({"msg": "API Working"})
 
