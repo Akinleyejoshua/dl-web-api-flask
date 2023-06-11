@@ -40,7 +40,7 @@ def predict(img_arr):
     print(f"Prediction - {label} score - {np.max(score[0])}")
     return label, np.max(score[0]), np.argmax(prediction)
 
-@app.route("/api/v1/facial-expression/predict", methods=["POST", "GET"])
+@app.route("/api/v1/facial-expression/predict", methods=["POST", "GET", "OPTIONS])
 @cross_origin(allow_headers=["Content-Type"])
 def facial_expression_decoder():
     response = request.get_json()
