@@ -1,3 +1,4 @@
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 from flask import Flask, request, jsonify
 import tensorflow as tf
 from flask_cors import CORS, cross_origin
