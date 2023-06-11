@@ -64,7 +64,7 @@ def facial_expression_decoder():
             return jsonify({"msg": f"{e}",})
 
 
-@app.route("/", methods=["*"])
+@app.route("/", methods=["GET"])
 def index():
     return jsonify({"msg": "API Working"})
 
@@ -77,4 +77,4 @@ def add_headers(response):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=False, host="0.0.0.0")
