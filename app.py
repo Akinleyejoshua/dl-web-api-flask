@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-CORS(app, support_credentials=True)
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+CORS(app, support_credentials=False)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 img_size = 24
