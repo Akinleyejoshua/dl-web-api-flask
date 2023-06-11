@@ -6,20 +6,21 @@ import os
 import base64
 import io
 from PIL import Image
+
 app = Flask(__name__)
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-# CORS(app, support_credentials=True)
+CORS(app, support_credentials=True)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 img_size = 24
-channel = 1
 unique = ["angry", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
 
-def process_image(img):
-    img = tf.constant(img)
-    img = tf.image.resize(img, size=[img_size, img_size])
+def process_image(img_path):
+    img = tf.constant(img_path)
+    img = tf.image.convert_image_dtype(img, tf.float32)
     img = tf.image.rgb_to_grayscale(img)
+    img = tf.image.resize(img, size=[img_size, img_size])
     return img
 
 def load_model(path):
@@ -53,7 +54,6 @@ def facial_expression_decoder():
 
         if img.mode != "RGB":
             img = img.convert("RGB")
-
         image_np = np.array(img)
     
         try:
@@ -76,4 +76,4 @@ def add_headers(response):
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
