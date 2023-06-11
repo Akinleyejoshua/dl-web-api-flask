@@ -20,8 +20,8 @@ unique = ["angry", "disgust", "fear", "happy", "neutral", "sad", "surprise"]
 
 def process_image(img_path):
     img = tf.constant(img_path)
-    img = tf.image.decode_jpeg(img, channels=channel)
     img = tf.image.resize(img, size=[img_size, img_size])
+    img = tf.image.rgb_to_grayscale(img)
     return img
 
 def load_model(path):
